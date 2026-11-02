@@ -7,7 +7,7 @@
       "category": "صوتی",
       "stock": 5,
       "rating": 4.9,
-      "image": "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&w=800&q=80",
+      "image": "/images/WH-1000XM4.webp",
       "description": "هدفون فوق حرفه‌ای با قابلیت حذف نویز هوشمند (ANC)، عمر باتری ۳۰ ساعته و کیفیت مکالمه بی‌نظیر مناسب برنامه‌نویسان و تولیدکنندگان محتوا."
     },
     {
@@ -17,7 +17,7 @@
       "category": "لوازم جانبی",
       "stock": 8,
       "rating": 4.8,
-      "image": "https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=800&q=80",
+      "image": "/images/K2-Pro.webp",
       "description": "کیبورد مکانیکال ۷۵ درصد با قابلیت اتصال بی‌سیم و سیمی، سوییچ‌های قابل تعویض (Hot-swappable) و سازگاری کامل با مک و ویندوز."
     },
     {
@@ -27,7 +27,7 @@
       "category": "لوازم جانبی",
       "stock": 3,
       "rating": 4.9,
-      "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=800&q=80",
+      "image": "/images/MX-Master.webp",
       "description": "ماوس بی‌صدا با دقت ۸۰۰۰ DPI، اسکرول الکترومغناطیسی فوق سریع و طراحی ارگونومیک برای جلوگیری از خستگی مچ دست در کارهای طولانی."
     },
     {
@@ -37,7 +37,7 @@
       "category": "نمایشگر",
       "stock": 2,
       "rating": 4.7,
-      "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=80",
+      "image": "/images/UltraSharp.webp",
       "description": "نمایشگر حرفه‌ای با پنل IPS Black، پوشش ۹۸ درصدی فضای رنگی DCI-P3 و هاب USB-C با توان شارژ ۹۰ وات."
     },
     {
@@ -47,7 +47,7 @@
       "category": "صوتی",
       "stock": 6,
       "rating": 4.6,
-      "image": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=800&q=80",
+      "image": "/images/Yeti-X.webp",
       "description": "میکروفون کاندنسر چهار کپسوله با نشانگر LED هوشمند سطح صدا، ایده‌آل برای جلسات آنلاین، استریم و ضبط پادکست."
     },
     {
@@ -57,7 +57,7 @@
       "category": "ارگونومی",
       "stock": 12,
       "rating": 4.8,
-      "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=800&q=80",
+      "image": "/images/Twelve-South.webp",
       "description": "استند آلومینیومی مقاوم با طراحی باز برای گردش هوای بهتر و تنظیم ارتفاع نمایشگر لپ‌تاپ در تراز چشم."
     }
   ]

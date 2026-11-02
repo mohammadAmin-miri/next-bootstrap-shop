@@ -26,8 +26,10 @@ export default function RootLayout({
     <html lang="fa" dir="rtl" className={vazirmatn.variable}>
       <body className="bg-light d-flex flex-column min-vh-100">
         <main className="container py-4 flex-grow-1">
-          {children}
           <Navbar/>
+          
+          {children}
+          
         </main>
         <BootstrapClient />
       </body>
