@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.rtl.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./globals.css";
 import BootstrapClient from "@/components/ui/BootstrapClient";
+import Navbar from "@/components/ui/Navbar";
 
 const vazirmatn = Vazirmatn({
   subsets: ["arabic"],
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body className="bg-light d-flex flex-column min-vh-100">
         <main className="container py-4 flex-grow-1">
           {children}
+          <Navbar/>
         </main>
         <BootstrapClient />
       </body>
