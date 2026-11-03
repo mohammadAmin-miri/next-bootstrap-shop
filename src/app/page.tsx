@@ -1,25 +1,17 @@
+import { Suspense } from "react";
 import { getProducts } from "@/services/productService";
 import ProductCard from "@/components/product/ProductCard";
+import ProductGridSkeleton from "@/components/product/ProductGridSkeleton";
 
-export default async function HomePage() {
+async function ProductGrid() {
   const products = await getProducts();
 
   return (
-    <section className="py-2">
-      <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 pb-2 border-bottom">
-        <div>
-          <h1 className="h3 fw-bold text-dark mb-1">
-            تجهیزات حرفه‌ای برنامه‌نویسی
-          </h1>
-          <p className="text-secondary mb-0 small">
-            گزیده‌ای از بهترین سخت‌افزارها برای افزایش بهره‌وری و ارگونومی محیط کار
-          </p>
-        </div>
-        <div className="mt-3 mt-md-0">
-          <span className="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-3">
-            تعداد کل: {products.length.toLocaleString("fa-IR")} محصول
-          </span>
-        </div>
+    <>
+      <div className="d-flex justify-content-end mb-3">
+        <span className="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-3">
+          تعداد کل: {products.length.toLocaleString("fa-IR")} محصول
+        </span>
       </div>
 
       <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
@@ -29,6 +21,25 @@ export default async function HomePage() {
           </div>
         ))}
       </div>
+    </>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <section className="py-2">
+      <div className="mb-4 pb-3 border-bottom">
+        <h1 className="h3 fw-bold text-dark mb-1">
+          تجهیزات حرفه‌ای برنامه‌نویسی
+        </h1>
+        <p className="text-secondary mb-0 small">
+          گزیده‌ای از بهترین سخت‌افزارها برای افزایش بهره‌وری و ارگونومی محیط کار
+        </p>
+      </div>
+
+      <Suspense fallback={<ProductGridSkeleton />}>
+        <ProductGrid />
+      </Suspense>
     </section>
   );
 }
