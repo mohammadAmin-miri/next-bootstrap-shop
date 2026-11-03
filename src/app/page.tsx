@@ -1,28 +1,11 @@
 import { Suspense } from "react";
 import { getProducts } from "@/services/productService";
-import ProductCard from "@/components/product/ProductCard";
+import ProductCatalog from "@/components/product/ProductCatalog";
 import ProductGridSkeleton from "@/components/product/ProductGridSkeleton";
 
-async function ProductGrid() {
+async function ProductSection() {
   const products = await getProducts();
-
-  return (
-    <>
-      <div className="d-flex justify-content-end mb-3">
-        <span className="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-3">
-          تعداد کل: {products.length.toLocaleString("fa-IR")} محصول
-        </span>
-      </div>
-
-      <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
-        {products.map((product) => (
-          <div key={product.id} className="col">
-            <ProductCard product={product} />
-          </div>
-        ))}
-      </div>
-    </>
-  );
+  return <ProductCatalog initialProducts={products} />;
 }
 
 export default function HomePage() {
@@ -38,7 +21,7 @@ export default function HomePage() {
       </div>
 
       <Suspense fallback={<ProductGridSkeleton />}>
-        <ProductGrid />
+        <ProductSection />
       </Suspense>
     </section>
   );

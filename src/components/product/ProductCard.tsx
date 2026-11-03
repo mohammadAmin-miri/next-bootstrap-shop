@@ -7,10 +7,11 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const isLowStock = product.stock <= 3;
+  const isOutOfStock = product.stock === 0;
+  const isLowStock = product.stock > 0 && product.stock <= 3;
 
   return (
-    <div className="card h-100 border-0 shadow-sm rounded-4 overflow-hidden product-card">
+    <div className="card h-100 border-0 shadow-sm rounded-4 overflow-hidden product-card bg-white">
       <Link
         href={`/products/${product.id}`}
         className="position-relative bg-secondary bg-opacity-10 d-block"
@@ -20,23 +21,34 @@ export default function ProductCard({ product }: ProductCardProps) {
           src={product.image}
           alt={product.title}
           fill
-          loading="eager"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-fit-cover"
+          className={`object-fit-cover ${isOutOfStock ? "opacity-50" : ""}`}
         />
         <span className="position-absolute top-0 start-0 m-3 badge bg-white text-dark shadow-sm px-3 py-2 rounded-pill fw-medium">
           {product.category}
         </span>
+
+        {isOutOfStock && (
+          <span className="position-absolute top-0 end-0 m-3 badge bg-danger shadow-sm px-3 py-2 rounded-pill fw-medium">
+            ناموجود
+          </span>
+        )}
       </Link>
 
       <div className="card-body d-flex flex-column p-4">
         <div className="d-flex justify-content-between align-items-center mb-2 small">
           <span
             className={`fw-medium ${
-              isLowStock ? "text-danger" : "text-success"
+              isOutOfStock
+                ? "text-muted"
+                : isLowStock
+                ? "text-danger"
+                : "text-success"
             }`}
           >
-            {isLowStock
+            {isOutOfStock
+              ? "اتمام موجودی انبار"
+              : isLowStock
               ? `تنها ${product.stock.toLocaleString("fa-IR")} عدد در انبار`
               : "موجود در انبار"}
           </span>
@@ -59,7 +71,13 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         <div className="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
           <div>
-            <span className="fs-5 fw-bold text-dark">
+            <span
+              className={`fs-5 fw-bold ${
+                isOutOfStock
+                  ? "text-secondary text-decoration-line-through"
+                  : "text-dark"
+              }`}
+            >
               {product.price.toLocaleString("fa-IR")}
             </span>
             <span className="text-secondary small ms-1">تومان</span>
@@ -67,7 +85,9 @@ export default function ProductCard({ product }: ProductCardProps) {
 
           <Link
             href={`/products/${product.id}`}
-            className="btn btn-outline-primary btn-sm rounded-3 px-3 py-2 d-flex align-items-center gap-1 fw-medium"
+            className={`btn ${
+              isOutOfStock ? "btn-outline-secondary" : "btn-outline-primary"
+            } btn-sm rounded-3 px-3 py-2 d-flex align-items-center gap-1 fw-medium`}
           >
             <span>مشاهده</span>
             <i className="bi bi-arrow-left"></i>
