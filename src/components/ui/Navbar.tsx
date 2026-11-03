@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useCart } from "@/context/CartContext";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { totalItems } = useCart();
 
   return (
     <header className="sticky-top bg-white border-bottom shadow-sm">
@@ -54,7 +56,7 @@ export default function Navbar() {
                 <i className="bi bi-bag fs-5"></i>
                 <span>سبد خرید</span>
                 <span className="badge rounded-pill bg-danger">
-                  {(0).toLocaleString("fa-IR")}
+                  {totalItems.toLocaleString("fa-IR")}
                 </span>
               </Link>
             </div>

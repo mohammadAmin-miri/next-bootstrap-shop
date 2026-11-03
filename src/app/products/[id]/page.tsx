@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getProductById } from "@/services/productService";
-
+import AddToCartButton from "@/components/product/AddToCartButton";
 interface ProductDetailPageProps {
   params: Promise<{ id: string }>;
 }
@@ -135,14 +135,7 @@ export default async function ProductDetailPage({
               </div>
 
               {/* دکمه خرید که در اسپرینت سوم به CartContext متصل می‌شود */}
-              <button
-                type="button"
-                disabled={isOutOfStock}
-                className="btn btn-primary btn-lg rounded-3 px-4 py-3 d-flex align-items-center justify-content-center gap-2 shadow-sm"
-              >
-                <i className="bi bi-cart-plus fs-5"></i>
-                <span>افزودن به سبد خرید</span>
-              </button>
+              <AddToCartButton product={product} />
             </div>
           </div>
         </div>

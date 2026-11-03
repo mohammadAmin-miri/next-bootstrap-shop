@@ -5,6 +5,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "./globals.css";
 import BootstrapClient from "@/components/ui/BootstrapClient";
 import Navbar from "@/components/ui/Navbar";
+import { CartProvider } from "@/context/CartContext";
 
 const vazirmatn = Vazirmatn({
   subsets: ["arabic"],
@@ -25,12 +26,12 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl" className={vazirmatn.variable}>
       <body className="bg-light d-flex flex-column min-vh-100">
-        <main className="container py-4 flex-grow-1">
-          <Navbar/>
-          
-          {children}
-          
-        </main>
+        <CartProvider>
+          <Navbar />
+          <main className="container py-4 flex-grow-1">
+            {children}
+          </main>
+        </CartProvider>
         <BootstrapClient />
       </body>
     </html>
