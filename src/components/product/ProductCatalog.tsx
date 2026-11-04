@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { Product } from "@/types";
+import { useState, useEffect, useMemo, useCallback } from "react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { Product } from "../../../types";
 import ProductCard from "./ProductCard";
 
 interface ProductCatalogProps {
@@ -13,12 +14,68 @@ const ITEMS_PER_PAGE = 6;
 export default function ProductCatalog({
   initialProducts,
 }: ProductCatalogProps) {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("همه");
-  const [sortBy, setSortBy] = useState("default");
-  const [currentPage, setCurrentPage] = useState(1);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-  // ۱. استخراج داینامیک دسته‌بندی‌های یکتا از لیست محصولات
+  // ۱. خواندن مقادیر فعلی فیلترها مستقیماً از URL
+  const queryParam = searchParams.get("q") || "";
+  const selectedCategory = searchParams.get("category") || "همه";
+  const sortBy = searchParams.get("sort") || "default";
+  const currentPage = Math.max(1, Number(searchParams.get("page")) || 1);
+
+  // استیت محلی فقط برای تایپ روان در اینپوت قبل از اعمال Debounce روی URL
+  const [searchState, setSearchState] = useState({
+    queryParam,
+    value: queryParam,
+  });
+  if (searchState.queryParam !== queryParam) {
+    setSearchState({ queryParam, value: queryParam });
+  }
+  const searchInput = searchState.value;
+  const setSearchInput = (value: string) =>
+    setSearchState({ queryParam, value });
+
+  // ۲. تابع کمکی برای ساخت و آپدیت پارامترهای URL
+  const updateUrlParams = useCallback(
+    (updates: Record<string, string | null>) => {
+      const params = new URLSearchParams(searchParams.toString());
+
+      Object.entries(updates).forEach(([key, value]) => {
+        if (
+          value === null ||
+          value === "" ||
+          value === "همه" ||
+          value === "default" ||
+          (key === "page" && value === "1")
+        ) {
+          params.delete(key); // حذف مقادیر پیش‌فرض برای تمیز ماندن URL
+        } else {
+          params.set(key, value);
+        }
+      });
+
+      const queryString = params.toString();
+      const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
+
+      // استفاده از scroll: false تا هنگام تغییر فیلتر صفحه به بالا نپرد
+      router.replace(newUrl, { scroll: false });
+    },
+    [searchParams, pathname, router]
+  );
+
+  // ۳. اعمال Debounce (تأخیر ۵۰۰ میلی‌ثانیه) برای انتقال متن سرچ به URL
+  useEffect(() => {
+    if (searchInput === queryParam) return;
+
+    const timer = setTimeout(() => {
+      updateUrlParams({ q: searchInput.trim(), page: "1" });
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [searchInput, queryParam, updateUrlParams]);
+
+  // ۴. استخراج داینامیک دسته‌بندی‌ها
   const categories = useMemo(() => {
     const uniqueCategories = Array.from(
       new Set(initialProducts.map((p) => p.category))
@@ -26,14 +83,14 @@ export default function ProductCatalog({
     return ["همه", ...uniqueCategories];
   }, [initialProducts]);
 
-  // ۲. اعمال فیلتر جستجو، دسته‌بندی و مرتب‌سازی
+  // ۵. فیلتر و مرتب‌سازی محصولات بر اساس مقادیر خوانده‌شده از URL
   const filteredAndSortedProducts = useMemo(() => {
     const filtered = initialProducts.filter((product) => {
       const matchesCategory =
         selectedCategory === "همه" || product.category === selectedCategory;
       const matchesSearch =
-        product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.description.toLowerCase().includes(searchQuery.toLowerCase());
+        product.title.toLowerCase().includes(queryParam.toLowerCase()) ||
+        product.description.toLowerCase().includes(queryParam.toLowerCase());
       return matchesCategory && matchesSearch;
     });
 
@@ -48,9 +105,9 @@ export default function ProductCatalog({
     }
 
     return filtered;
-  }, [initialProducts, selectedCategory, searchQuery, sortBy]);
+  }, [initialProducts, selectedCategory, queryParam, sortBy]);
 
-  // ۳. محاسبات صفحه‌بندی (Pagination)
+  // ۶. محاسبات صفحه‌بندی (Pagination)
   const totalPages = Math.ceil(
     filteredAndSortedProducts.length / ITEMS_PER_PAGE
   );
@@ -64,27 +121,22 @@ export default function ProductCatalog({
     );
   }, [filteredAndSortedProducts, safeCurrentPage]);
 
-  // هندلرهای تغییر فیلتر همراه با بازنشانی صفحه به ۱
+  // هندلرهای تغییر فیلترها
   const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category);
-    setCurrentPage(1);
+    updateUrlParams({ category, page: "1" });
   };
 
-  const handleSearchChange = (value: string) => {
-    setSearchQuery(value);
-    setCurrentPage(1);
+  const handleSortChange = (sortValue: string) => {
+    updateUrlParams({ sort: sortValue, page: "1" });
   };
 
-  const handleSortChange = (value: string) => {
-    setSortBy(value);
-    setCurrentPage(1);
+  const handlePageChange = (newPage: number) => {
+    updateUrlParams({ page: String(newPage) });
   };
 
   const handleResetFilters = () => {
-    setSearchQuery("");
-    setSelectedCategory("همه");
-    setSortBy("default");
-    setCurrentPage(1);
+    setSearchInput("");
+    router.replace(pathname, { scroll: false });
   };
 
   return (
@@ -100,15 +152,18 @@ export default function ProductCatalog({
               </span>
               <input
                 type="text"
-                value={searchQuery}
-                onChange={(e) => handleSearchChange(e.target.value)}
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
                 placeholder="جستجو در نام یا مشخصات محصول..."
                 className="form-control bg-light border-start-0 rounded-end-3 shadow-none"
               />
-              {searchQuery && (
+              {searchInput && (
                 <button
                   type="button"
-                  onClick={() => handleSearchChange("")}
+                  onClick={() => {
+                    setSearchInput("");
+                    updateUrlParams({ q: null, page: "1" });
+                  }}
                   className="btn btn-light border text-secondary"
                   title="پاک کردن جستجو"
                 >
@@ -158,7 +213,7 @@ export default function ProductCatalog({
               key={category}
               type="button"
               onClick={() => handleCategoryChange(category)}
-              className={`btn btn-sm rounded-pill px-3 py-1 fw-medium transition-all ${
+              className={`btn btn-sm rounded-pill px-3 py-1 fw-medium ${
                 selectedCategory === category
                   ? "btn-primary shadow-sm"
                   : "btn-light text-secondary border"
@@ -216,7 +271,7 @@ export default function ProductCatalog({
                   <button
                     type="button"
                     onClick={() =>
-                      setCurrentPage((prev) => Math.max(1, prev - 1))
+                      handlePageChange(Math.max(1, safeCurrentPage - 1))
                     }
                     className="page-link rounded-3 border-0 shadow-sm px-3 py-2 text-dark"
                   >
@@ -235,7 +290,7 @@ export default function ProductCatalog({
                     >
                       <button
                         type="button"
-                        onClick={() => setCurrentPage(page)}
+                        onClick={() => handlePageChange(page)}
                         className={`page-link rounded-3 border-0 shadow-sm px-3 py-2 fw-bold ${
                           safeCurrentPage === page
                             ? "bg-primary text-white"
@@ -256,7 +311,9 @@ export default function ProductCatalog({
                   <button
                     type="button"
                     onClick={() =>
-                      setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+                      handlePageChange(
+                        Math.min(totalPages, safeCurrentPage + 1)
+                      )
                     }
                     className="page-link rounded-3 border-0 shadow-sm px-3 py-2 text-dark"
                   >
