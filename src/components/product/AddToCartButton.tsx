@@ -21,7 +21,7 @@ export default function AddToCartButton({ product }: AddToCartButtonProps) {
         disabled
         className="btn btn-secondary btn-lg rounded-3 px-4 py-3"
       >
-        ناموجود در انبار
+        Out of stock
       </button>
     );
   }
@@ -34,7 +34,7 @@ export default function AddToCartButton({ product }: AddToCartButtonProps) {
         className="btn btn-primary btn-lg rounded-3 px-4 py-3 d-flex align-items-center justify-content-center gap-2 shadow-sm"
       >
         <i className="bi bi-cart-plus fs-5"></i>
-        <span>افزودن به سبد خرید</span>
+        <span>Add to Cart</span>
       </button>
     );
   }
@@ -42,45 +42,45 @@ export default function AddToCartButton({ product }: AddToCartButtonProps) {
   return (
     <div className="d-flex flex-column align-items-sm-end gap-2">
       <div className="d-flex align-items-center gap-3">
-        {/* کنترلر تعداد */}
+        {/* Quantity controls */}
         <div className="d-flex align-items-center border rounded-3 p-1 bg-light">
           <button
             type="button"
             onClick={() => addToCart(product)}
             disabled={isMaxStockReached}
             className="btn btn-sm btn-white border-0 px-3 py-2 fw-bold text-primary"
-            title="افزایش تعداد"
+            title="Increase quantity"
           >
             <i className="bi bi-plus-lg"></i>
           </button>
 
           <span className="px-3 fw-bold fs-5 text-dark">
-            {quantity.toLocaleString("fa-IR")}
+            {quantity.toLocaleString("en-US")}
           </span>
 
           <button
             type="button"
             onClick={() => decreaseQuantity(product.id)}
             className="btn btn-sm btn-white border-0 px-3 py-2 text-danger"
-            title={quantity === 1 ? "حذف از سبد" : "کاهش تعداد"}
+            title={quantity === 1 ? "Remove from cart" : "Decrease quantity"}
           >
             <i className={`bi ${quantity === 1 ? "bi-trash3" : "bi-dash-lg"}`}></i>
           </button>
         </div>
 
-        {/* لینک سریع به سبد خرید */}
+        {/* Quick link to the cart */}
         <Link
           href="/cart"
           className="btn btn-outline-success rounded-3 px-3 py-2 d-flex align-items-center gap-2 small fw-medium"
         >
-          <span>مشاهده سبد</span>
-          <i className="bi bi-arrow-left"></i>
+          <span>View Cart</span>
+          <i className="bi bi-arrow-right"></i>
         </Link>
       </div>
 
       {isMaxStockReached && (
         <span className="text-danger" style={{ fontSize: "0.75rem" }}>
-          حداکثر موجودی انبار انتخاب شده است
+          Maximum available stock selected
         </span>
       )}
     </div>

@@ -15,11 +15,11 @@ export async function generateMetadata({
   const product = await getProductById(id);
 
   if (!product) {
-    return { title: "محصول یافت نشد | دیجی‌استور" };
+    return { title: "Product Not Found | DigiStore" };
   }
 
   return {
-    title: `${product.title} | دیجی‌استور`,
+    title: `${product.title} | DigiStore`,
     description: product.description,
   };
 }
@@ -39,12 +39,12 @@ export default async function ProductDetailPage({
 
   return (
     <div className="py-2">
-      {/* مسیر راهنما (Breadcrumb) */}
-      <nav aria-label="breadcrumb" className="mb-4">
+      {/* Breadcrumb navigation */}
+      <nav aria-label="Breadcrumb" className="mb-4">
         <ol className="breadcrumb small">
           <li className="breadcrumb-item">
             <Link href="/" className="text-decoration-none text-secondary">
-              صفحه اصلی
+              Home
             </Link>
           </li>
           <li className="breadcrumb-item text-secondary">{product.category}</li>
@@ -57,10 +57,10 @@ export default async function ProductDetailPage({
         </ol>
       </nav>
 
-      {/* باکس اصلی جزئیات محصول */}
+      {/* Main product details */}
       <div className="card border-0 shadow-sm rounded-4 overflow-hidden bg-white">
         <div className="row g-0">
-          {/* بخش تصویر محصول */}
+          {/* Product image */}
           <div className="col-lg-5 bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center p-4">
             <div
               className="position-relative w-100 rounded-4 overflow-hidden shadow-sm"
@@ -76,16 +76,16 @@ export default async function ProductDetailPage({
             </div>
           </div>
 
-          {/* بخش اطلاعات و خرید */}
+          {/* Product information and purchase */}
           <div className="col-lg-7 p-4 p-lg-5 d-flex flex-column">
             <div className="d-flex justify-content-between align-items-center mb-3">
               <span className="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-medium">
-                دسته‌بندی: {product.category}
+                Category: {product.category}
               </span>
 
               <div className="d-flex align-items-center gap-1 bg-warning bg-opacity-10 px-3 py-1 rounded-pill">
                 <span className="fw-bold text-dark small">
-                  {product.rating.toLocaleString("fa-IR")}
+                  {product.rating.toLocaleString("en-US")}
                 </span>
                 <i className="bi bi-star-fill text-warning small"></i>
               </div>
@@ -95,46 +95,46 @@ export default async function ProductDetailPage({
 
             <p className="text-secondary lh-lg mb-4">{product.description}</p>
 
-            {/* ویژگی‌های اطمینان خرید */}
+            {/* Purchase benefits */}
             <div className="row row-cols-1 row-cols-sm-2 g-3 mb-4 py-3 border-top border-bottom">
               <div className="col d-flex align-items-center gap-2 text-secondary small">
                 <i className="bi bi-shield-check text-success fs-5"></i>
-                <span>گارانتی ۱۸ ماهه معتبر شرکتی</span>
+                <span>18-month manufacturer warranty</span>
               </div>
               <div className="col d-flex align-items-center gap-2 text-secondary small">
                 <i className="bi bi-truck text-primary fs-5"></i>
-                <span>ارسال سریع از انبار تهران</span>
+                <span>Fast shipping from our Tehran warehouse</span>
               </div>
             </div>
 
-            {/* وضعیت موجودی، قیمت و دکمه افزودن به سبد */}
+            {/* Availability, price, and add-to-cart button */}
             <div className="mt-auto pt-2 d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3">
               <div>
                 <div className="mb-1">
                   {isOutOfStock ? (
-                    <span className="badge bg-danger">ناموجود</span>
+                    <span className="badge bg-danger">Out of stock</span>
                   ) : isLowStock ? (
                     <span className="text-danger small fw-bold">
                       <i className="bi bi-exclamation-circle me-1"></i>
-                      تنها {product.stock.toLocaleString("fa-IR")} عدد در انبار باقی مانده
+                      Only {product.stock.toLocaleString("en-US")} left in stock
                     </span>
                   ) : (
                     <span className="text-success small fw-medium">
                       <i className="bi bi-check2-circle me-1"></i>
-                      موجود در انبار ({product.stock.toLocaleString("fa-IR")} عدد)
+                      In stock ({product.stock.toLocaleString("en-US")} available)
                     </span>
                   )}
                 </div>
 
                 <div>
                   <span className="fs-3 fw-bold text-dark">
-                    {product.price.toLocaleString("fa-IR")}
+                    {product.price.toLocaleString("en-US")}
                   </span>
-                  <span className="text-secondary ms-1">تومان</span>
+                  <span className="text-secondary ms-1">Toman</span>
                 </div>
               </div>
 
-              {/* دکمه خرید که در اسپرینت سوم به CartContext متصل می‌شود */}
+              {/* Purchase button connected to CartContext */}
               <AddToCartButton product={product} />
             </div>
           </div>

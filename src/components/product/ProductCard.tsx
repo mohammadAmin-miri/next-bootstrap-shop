@@ -30,7 +30,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         {isOutOfStock && (
           <span className="position-absolute top-0 end-0 m-3 badge bg-danger shadow-sm px-3 py-2 rounded-pill fw-medium">
-            ناموجود
+            Out of stock
           </span>
         )}
       </Link>
@@ -47,15 +47,15 @@ export default function ProductCard({ product }: ProductCardProps) {
             }`}
           >
             {isOutOfStock
-              ? "اتمام موجودی انبار"
+              ? "Out of stock"
               : isLowStock
-              ? `تنها ${product.stock.toLocaleString("fa-IR")} عدد در انبار`
-              : "موجود در انبار"}
+              ? `Only ${product.stock.toLocaleString("en-US")} left in stock`
+              : "In stock"}
           </span>
 
           <div className="d-flex align-items-center gap-1 text-warning fw-bold">
             <span className="text-dark">
-              {product.rating.toLocaleString("fa-IR")}
+              {product.rating.toLocaleString("en-US")}
             </span>
             <i className="bi bi-star-fill"></i>
           </div>
@@ -78,9 +78,9 @@ export default function ProductCard({ product }: ProductCardProps) {
                   : "text-dark"
               }`}
             >
-              {product.price.toLocaleString("fa-IR")}
+              {product.price.toLocaleString("en-US")}
             </span>
-            <span className="text-secondary small ms-1">تومان</span>
+            <span className="text-secondary small ms-1">Toman</span>
           </div>
 
           <Link
@@ -89,8 +89,8 @@ export default function ProductCard({ product }: ProductCardProps) {
               isOutOfStock ? "btn-outline-secondary" : "btn-outline-primary"
             } btn-sm rounded-3 px-3 py-2 d-flex align-items-center gap-1 fw-medium`}
           >
-            <span>مشاهده</span>
-            <i className="bi bi-arrow-left"></i>
+            <span>View</span>
+            <i className="bi bi-arrow-right"></i>
           </Link>
         </div>
       </div>

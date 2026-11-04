@@ -13,10 +13,10 @@ export default function HomePage() {
     <section className="py-2">
       <div className="mb-4 pb-3 border-bottom">
         <h1 className="h3 fw-bold text-dark mb-1">
-          تجهیزات حرفه‌ای برنامه‌نویسی
+          Professional Developer Equipment
         </h1>
         <p className="text-secondary mb-0 small">
-          گزیده‌ای از بهترین سخت‌افزارها برای افزایش بهره‌وری و ارگونومی محیط کار
+          A curated selection of top hardware to improve productivity and workplace ergonomics
         </p>
       </div>
 

@@ -8,7 +8,7 @@ export async function getProducts(): Promise<Product[]> {
   });
 
   if (!res.ok) {
-    throw new Error("خطا در دریافت لیست محصولات از سرور");
+    throw new Error("Failed to fetch the product list from the server");
   }
 
   return res.json();
@@ -24,7 +24,7 @@ export async function getProductById(id: string): Promise<Product | null> {
   }
 
   if (!res.ok) {
-    throw new Error("خطا در دریافت اطلاعات محصول");
+    throw new Error("Failed to fetch product details");
   }
 
   return res.json();

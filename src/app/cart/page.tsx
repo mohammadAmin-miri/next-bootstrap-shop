@@ -15,7 +15,7 @@ export default function CartPage() {
         setIsOrderSuccess(true);
     };
 
-    // ۱. وضعیت ثبت موفق سفارش (فقط زمانی که سفارش ثبت شده و سبد خالی است)
+    // 1. Order success state (shown after the order is placed and the cart is empty)
     if (isOrderSuccess && items.length === 0) {
         return (
             <div className="card border-0 shadow-sm rounded-4 p-5 text-center my-5 bg-white">
@@ -27,54 +27,54 @@ export default function CartPage() {
                         <i className="bi bi-check-lg display-4"></i>
                     </div>
                     <h1 className="h3 fw-bold text-dark mb-2">
-                        سفارش شما با موفقیت ثبت شد!
+                        Your order has been placed successfully!
                     </h1>
                     <p className="text-secondary mb-4">
-                        از خرید شما سپاسگزاریم. کد رهگیری سفارش برای شما پیامک خواهد شد.
+                        Thank you for your purchase. Your order tracking number will be sent to you by text message.
                     </p>
                     <Link
                         href="/"
                         onClick={() => setIsOrderSuccess(false)}
                         className="btn btn-primary rounded-3 px-4 py-2 d-inline-flex align-items-center gap-2"
                     >
-                        <span>بازگشت به فروشگاه</span>
-                        <i className="bi bi-arrow-left"></i>
+                        <span>Back to store</span>
+                        <i className="bi bi-arrow-right"></i>
                     </Link>
                 </div>
             </div>
         );
     }
 
-    // ۲. وضعیت خالی بودن سبد خرید
+    // 2. Empty cart state
     if (items.length === 0) {
         return (
             <div className="card border-0 shadow-sm rounded-4 p-5 text-center my-5 bg-white">
                 <div className="py-4">
                     <i className="bi bi-cart-x text-secondary display-1 mb-3 d-block"></i>
-                    <h1 className="h4 fw-bold text-dark mb-2">سبد خرید شما خالی است!</h1>
+                    <h1 className="h4 fw-bold text-dark mb-2">Your cart is empty!</h1>
                     <p className="text-secondary mb-4">
-                        می‌توانید برای مشاهده محصولات بیشتر به صفحه اصلی فروشگاه مراجعه کنید.
+                        Visit the store homepage to browse more products.
                     </p>
                     <Link
                         href="/"
                         className="btn btn-primary rounded-3 px-4 py-2 d-inline-flex align-items-center gap-2"
                     >
                         <i className="bi bi-bag-plus"></i>
-                        <span>مشاهده محصولات فروشگاه</span>
+                        <span>Browse products</span>
                     </Link>
                 </div>
             </div>
         );
     }
 
-    // ۳. نمایش لیست آیتم‌های سبد خرید و فاکتور
+    // 3. Cart items and order summary
     return (
         <div className="py-2">
             <div className="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mb-4 pb-3 border-bottom gap-2">
                 <div>
-                    <h1 className="h3 fw-bold text-dark mb-1">سبد خرید شما</h1>
+                    <h1 className="h3 fw-bold text-dark mb-1">Your Shopping Cart</h1>
                     <p className="text-secondary small mb-0">
-                        {totalItems.toLocaleString("fa-IR")} کالا در سبد خرید شما موجود است
+                        {totalItems.toLocaleString("en-US")} items in your cart
                     </p>
                 </div>
 
@@ -84,7 +84,7 @@ export default function CartPage() {
                     className="btn btn-outline-danger btn-sm rounded-3 px-3 py-2 d-inline-flex align-items-center gap-2 align-self-start align-self-sm-center"
                 >
                     <i className="bi bi-trash"></i>
-                    <span>خالی کردن سبد</span>
+                    <span>Clear cart</span>
                 </button>
             </div>
 

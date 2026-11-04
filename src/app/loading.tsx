@@ -9,10 +9,10 @@ export default function GlobalLoading() {
         style={{ width: "3rem", height: "3rem" }}
         role="status"
       >
-        <span className="visually-hidden">در حال بارگذاری...</span>
+        <span className="visually-hidden">Loading...</span>
       </div>
       <p className="text-secondary fw-medium small mb-0">
-        در حال بارگذاری صفحه...
+        Loading page...
       </p>
     </div>
   );

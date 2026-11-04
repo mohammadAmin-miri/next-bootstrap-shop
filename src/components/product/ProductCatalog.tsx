@@ -18,13 +18,13 @@ export default function ProductCatalog({
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // ۱. خواندن مقادیر فعلی فیلترها مستقیماً از URL
+  // 1. Read the current filter values directly from the URL
   const queryParam = searchParams.get("q") || "";
-  const selectedCategory = searchParams.get("category") || "همه";
+  const selectedCategory = searchParams.get("category") || "All";
   const sortBy = searchParams.get("sort") || "default";
   const currentPage = Math.max(1, Number(searchParams.get("page")) || 1);
 
-  // استیت محلی فقط برای تایپ روان در اینپوت قبل از اعمال Debounce روی URL
+  // Keep local input responsive before debouncing updates to the URL
   const [searchState, setSearchState] = useState({
     queryParam,
     value: queryParam,
@@ -36,7 +36,7 @@ export default function ProductCatalog({
   const setSearchInput = (value: string) =>
     setSearchState({ queryParam, value });
 
-  // ۲. تابع کمکی برای ساخت و آپدیت پارامترهای URL
+  // 2. Build and update URL parameters
   const updateUrlParams = useCallback(
     (updates: Record<string, string | null>) => {
       const params = new URLSearchParams(searchParams.toString());
@@ -45,11 +45,11 @@ export default function ProductCatalog({
         if (
           value === null ||
           value === "" ||
-          value === "همه" ||
+          value === "All" ||
           value === "default" ||
           (key === "page" && value === "1")
         ) {
-          params.delete(key); // حذف مقادیر پیش‌فرض برای تمیز ماندن URL
+          params.delete(key); // Omit default values to keep the URL clean
         } else {
           params.set(key, value);
         }
@@ -58,13 +58,13 @@ export default function ProductCatalog({
       const queryString = params.toString();
       const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
 
-      // استفاده از scroll: false تا هنگام تغییر فیلتر صفحه به بالا نپرد
+      // Keep the page in place when filters change
       router.replace(newUrl, { scroll: false });
     },
     [searchParams, pathname, router]
   );
 
-  // ۳. اعمال Debounce (تأخیر ۵۰۰ میلی‌ثانیه) برای انتقال متن سرچ به URL
+  // 3. Debounce search text updates to the URL by 500 milliseconds
   useEffect(() => {
     if (searchInput === queryParam) return;
 
@@ -75,19 +75,19 @@ export default function ProductCatalog({
     return () => clearTimeout(timer);
   }, [searchInput, queryParam, updateUrlParams]);
 
-  // ۴. استخراج داینامیک دسته‌بندی‌ها
+  // 4. Dynamically derive categories
   const categories = useMemo(() => {
     const uniqueCategories = Array.from(
       new Set(initialProducts.map((p) => p.category))
     );
-    return ["همه", ...uniqueCategories];
+    return ["All", ...uniqueCategories];
   }, [initialProducts]);
 
-  // ۵. فیلتر و مرتب‌سازی محصولات بر اساس مقادیر خوانده‌شده از URL
+  // 5. Filter and sort products using values read from the URL
   const filteredAndSortedProducts = useMemo(() => {
     const filtered = initialProducts.filter((product) => {
       const matchesCategory =
-        selectedCategory === "همه" || product.category === selectedCategory;
+        selectedCategory === "All" || product.category === selectedCategory;
       const matchesSearch =
         product.title.toLowerCase().includes(queryParam.toLowerCase()) ||
         product.description.toLowerCase().includes(queryParam.toLowerCase());
@@ -107,7 +107,7 @@ export default function ProductCatalog({
     return filtered;
   }, [initialProducts, selectedCategory, queryParam, sortBy]);
 
-  // ۶. محاسبات صفحه‌بندی (Pagination)
+  // 6. Calculate pagination
   const totalPages = Math.ceil(
     filteredAndSortedProducts.length / ITEMS_PER_PAGE
   );
@@ -121,7 +121,7 @@ export default function ProductCatalog({
     );
   }, [filteredAndSortedProducts, safeCurrentPage]);
 
-  // هندلرهای تغییر فیلترها
+  // Filter change handlers
   const handleCategoryChange = (category: string) => {
     updateUrlParams({ category, page: "1" });
   };
@@ -141,10 +141,10 @@ export default function ProductCatalog({
 
   return (
     <div>
-      {/* نوار ابزار جستجو، فیلتر و مرتب‌سازی */}
+      {/* Search, filter, and sort toolbar */}
       <div className="card border-0 shadow-sm rounded-4 p-3 p-md-4 mb-4 bg-white">
         <div className="row g-3 align-items-center">
-          {/* باکس جستجو */}
+          {/* Search field */}
           <div className="col-12 col-md-5">
             <div className="input-group">
               <span className="input-group-text bg-light border-end-0 text-secondary rounded-start-3">
@@ -154,7 +154,7 @@ export default function ProductCatalog({
                 type="text"
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
-                placeholder="جستجو در نام یا مشخصات محصول..."
+                placeholder="Search products by name or description..."
                 className="form-control bg-light border-start-0 rounded-end-3 shadow-none"
               />
               {searchInput && (
@@ -165,7 +165,7 @@ export default function ProductCatalog({
                     updateUrlParams({ q: null, page: "1" });
                   }}
                   className="btn btn-light border text-secondary"
-                  title="پاک کردن جستجو"
+                  title="Clear search"
                 >
                   <i className="bi bi-x-lg"></i>
                 </button>
@@ -173,7 +173,7 @@ export default function ProductCatalog({
             </div>
           </div>
 
-          {/* انتخاب‌گر مرتب‌سازی */}
+          {/* Sort selector */}
           <div className="col-12 col-sm-6 col-md-4">
             <div className="input-group">
               <span className="input-group-text bg-light text-secondary rounded-start-3">
@@ -183,30 +183,30 @@ export default function ProductCatalog({
                 value={sortBy}
                 onChange={(e) => handleSortChange(e.target.value)}
                 className="form-select bg-light shadow-none rounded-end-3"
-                aria-label="مرتب‌سازی محصولات"
+                aria-label="Sort products"
               >
-                <option value="default">مرتب‌سازی پیش‌فرض</option>
-                <option value="price-asc">ارزان‌ترین به گران‌ترین</option>
-                <option value="price-desc">گران‌ترین به ارزان‌ترین</option>
-                <option value="rating">بالاترین امتیاز کاربران</option>
+                <option value="default">Default sorting</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="rating">Highest rated</option>
               </select>
             </div>
           </div>
 
-          {/* شمارنده نتایج */}
+          {/* Result count */}
           <div className="col-12 col-sm-6 col-md-3 text-sm-end">
             <span className="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-3">
-              نمایش {filteredAndSortedProducts.length.toLocaleString("fa-IR")}{" "}
-              محصول
+              Showing {filteredAndSortedProducts.length.toLocaleString("en-US")}{" "}
+              products
             </span>
           </div>
         </div>
 
-        {/* دکمه‌های فیلتر دسته‌بندی */}
+        {/* Category filters */}
         <div className="d-flex flex-wrap align-items-center gap-2 mt-3 pt-3 border-top">
           <span className="text-secondary small ms-2">
             <i className="bi bi-funnel me-1"></i>
-            دسته‌بندی:
+            Category:
           </span>
           {categories.map((category) => (
             <button
@@ -225,16 +225,16 @@ export default function ProductCatalog({
         </div>
       </div>
 
-      {/* نمایش گرید محصولات یا پیام عدم یافتن نتیجه */}
+      {/* Product grid or no-results message */}
       {paginatedProducts.length === 0 ? (
         <div className="card border-0 shadow-sm rounded-4 p-5 text-center my-4 bg-white">
           <div className="py-3">
             <i className="bi bi-search text-secondary display-4 mb-3 d-block"></i>
             <h3 className="h5 fw-bold text-dark mb-2">
-              محصولی با این مشخصات یافت نشد!
+              No products found!
             </h3>
             <p className="text-secondary small mb-4">
-              واژه دیگری را جستجو کنید یا فیلترهای اعمال شده را پاک نمایید.
+              Try a different search term or clear your filters.
             </p>
             <button
               type="button"
@@ -242,7 +242,7 @@ export default function ProductCatalog({
               className="btn btn-outline-primary rounded-3 px-4 py-2 d-inline-flex align-items-center gap-2"
             >
               <i className="bi bi-arrow-counterclockwise"></i>
-              <span>پاک کردن تمام فیلترها</span>
+              <span>Clear all filters</span>
             </button>
           </div>
         </div>
@@ -256,10 +256,10 @@ export default function ProductCatalog({
             ))}
           </div>
 
-          {/* کنترلر صفحه‌بندی (Pagination) */}
+          {/* Pagination controls */}
           {totalPages > 1 && (
             <nav
-              aria-label="صفحه‌بندی محصولات"
+              aria-label="Product pagination"
               className="mt-5 d-flex justify-content-center"
             >
               <ul className="pagination pagination-md gap-2 mb-0">
@@ -275,8 +275,8 @@ export default function ProductCatalog({
                     }
                     className="page-link rounded-3 border-0 shadow-sm px-3 py-2 text-dark"
                   >
-                    <i className="bi bi-chevron-right small me-1"></i>
-                    قبلی
+                    <i className="bi bi-chevron-left small me-1"></i>
+                    Previous
                   </button>
                 </li>
 
@@ -297,7 +297,7 @@ export default function ProductCatalog({
                             : "bg-white text-dark"
                         }`}
                       >
-                        {page.toLocaleString("fa-IR")}
+                        {page.toLocaleString("en-US")}
                       </button>
                     </li>
                   )
@@ -317,8 +317,8 @@ export default function ProductCatalog({
                     }
                     className="page-link rounded-3 border-0 shadow-sm px-3 py-2 text-dark"
                   >
-                    بعدی
-                    <i className="bi bi-chevron-left small ms-1"></i>
+                    Next
+                    <i className="bi bi-chevron-right small ms-1"></i>
                   </button>
                 </li>
               </ul>

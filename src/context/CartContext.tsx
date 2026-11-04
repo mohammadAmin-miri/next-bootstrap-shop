@@ -28,7 +28,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isInitialized, setIsInitialized] = useState(false);
 
-  // ۱. خواندن اطلاعات سبد خرید از localStorage در اولین رندر کلاینت
+  // 1. Read the cart from localStorage on the first client render
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
       try {
@@ -37,7 +37,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
           setItems(JSON.parse(storedCart));
         }
       } catch (error) {
-        console.error("خطا در خواندن سبد خرید از حافظه مرورگر:", error);
+        console.error("Failed to read the cart from browser storage:", error);
       } finally {
         setIsInitialized(true);
       }
@@ -46,14 +46,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
     return () => window.clearTimeout(timeoutId);
   }, []);
 
-  // ۲. ذخیره خودکار تغییرات سبد خرید در localStorage
+  // 2. Automatically save cart changes to localStorage
   useEffect(() => {
     if (isInitialized) {
       localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
     }
   }, [items, isInitialized]);
 
-  // افزودن محصول یا افزایش تعداد (با رعایت سقف موجودی انبار)
+  // Add a product or increase its quantity without exceeding available stock
   const addToCart = (product: Product) => {
     setItems((prevItems) => {
       const existingItem = prevItems.find(
@@ -75,7 +75,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
   };
 
-  // کاهش تعداد محصول (یا حذف در صورت رسیدن به صفر)
+  // Decrease the product quantity or remove it when it reaches zero
   const decreaseQuantity = (productId: string) => {
     setItems((prevItems) => {
       const existingItem = prevItems.find(
@@ -94,25 +94,25 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
   };
 
-  // حذف کامل یک ردیف محصول از سبد
+  // Remove a product row from the cart
   const removeFromCart = (productId: string) => {
     setItems((prevItems) =>
       prevItems.filter((item) => item.product.id !== productId)
     );
   };
 
-  // خالی کردن کل سبد خرید
+  // Clear the entire cart
   const clearCart = () => {
     setItems([]);
   };
 
-  // دریافت تعداد فعلی یک محصول خاص در سبد
+  // Get the current quantity of a product in the cart
   const getItemQuantity = (productId: string): number => {
     const item = items.find((item) => item.product.id === productId);
     return item ? item.quantity : 0;
   };
 
-  // محاسبه مجموع تعداد کالاها و جمع کل فاکتور
+  // Calculate the total item count and order price
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = items.reduce(
     (sum, item) => sum + item.product.price * item.quantity,
@@ -140,7 +140,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 export function useCart() {
   const context = useContext(CartContext);
   if (!context) {
-    throw new Error("هوک useCart باید داخل CartProvider استفاده شود");
+    throw new Error("useCart must be used within a CartProvider");
   }
   return context;
 }

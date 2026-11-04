@@ -2,183 +2,183 @@
   "products": [
     {
       "id": "1",
-      "title": "هدفون بی‌سیم سونی مدل WH-1000XM5",
+      "title": "Sony WH-1000XM5 Wireless Headphones",
       "price": 18500000,
-      "category": "صوتی",
+      "category": "Audio",
       "stock": 5,
       "rating": 4.9,
       "image": "/images/WH-1000XM4.webp",
-      "description": "هدفون فوق حرفه‌ای با قابلیت حذف نویز هوشمند (ANC)، عمر باتری ۳۰ ساعته و کیفیت مکالمه بی‌نظیر مناسب برنامه‌نویسان و تولیدکنندگان محتوا."
+      "description": "Premium headphones with smart active noise cancellation (ANC), 30-hour battery life, and exceptional call quality, ideal for developers and content creators."
     },
     {
       "id": "2",
-      "title": "کیبورد مکانیکال کیکرون مدل K2 Pro",
+      "title": "Keychron K2 Pro Mechanical Keyboard",
       "price": 6200000,
-      "category": "لوازم جانبی",
+      "category": "Accessories",
       "stock": 8,
       "rating": 4.8,
       "image": "/images/K2-Pro.webp",
-      "description": "کیبورد مکانیکال ۷۵ درصد با قابلیت اتصال بی‌سیم و سیمی، سوییچ‌های قابل تعویض (Hot-swappable) و سازگاری کامل با مک و ویندوز."
+      "description": "75% mechanical keyboard with wireless and wired connectivity, hot-swappable switches, and full compatibility with Mac and Windows."
     },
     {
       "id": "3",
-      "title": "ماوس ارگونومیک لاجیتک MX Master 3S",
+      "title": "Logitech MX Master 3S Ergonomic Mouse",
       "price": 5800000,
-      "category": "لوازم جانبی",
+      "category": "Accessories",
       "stock": 3,
       "rating": 4.9,
       "image": "/images/MX-Master.webp",
-      "description": "ماوس بی‌صدا با دقت ۸۰۰۰ DPI، اسکرول الکترومغناطیسی فوق سریع و طراحی ارگونومیک برای جلوگیری از خستگی مچ دست در کارهای طولانی."
+      "description": "Quiet mouse with 8,000 DPI precision, ultra-fast electromagnetic scrolling, and an ergonomic design to help prevent wrist fatigue during long work sessions."
     },
     {
       "id": "4",
-      "title": "مانیتور ۲۷ اینچ 4K دل مدل UltraSharp",
+      "title": "Dell 27-inch 4K UltraSharp Monitor",
       "price": 29400000,
-      "category": "نمایشگر",
+      "category": "Displays",
       "stock": 2,
       "rating": 4.7,
       "image": "/images/UltraSharp.webp",
-      "description": "نمایشگر حرفه‌ای با پنل IPS Black، پوشش ۹۸ درصدی فضای رنگی DCI-P3 و هاب USB-C با توان شارژ ۹۰ وات."
+      "description": "Professional display with an IPS Black panel, 98% DCI-P3 color gamut coverage, and a USB-C hub with 90W charging."
     },
     {
       "id": "5",
-      "title": "میکروفون استودیویی بلو مدل Yeti X",
+      "title": "Blue Yeti X Studio Microphone",
       "price": 9100000,
-      "category": "صوتی",
+      "category": "Audio",
       "stock": 6,
       "rating": 4.6,
       "image": "/images/Yeti-X.webp",
-      "description": "میکروفون کاندنسر چهار کپسوله با نشانگر LED هوشمند سطح صدا، ایده‌آل برای جلسات آنلاین، استریم و ضبط پادکست."
+      "description": "Four-capsule condenser microphone with a smart LED level meter, ideal for online meetings, streaming, and podcast recording."
     },
     {
       "id": "6",
-      "title": "پایه نگهدارنده لپ‌تاپ آلومینیومی Twelve South",
+      "title": "Twelve South Aluminum Laptop Stand",
       "price": 3400000,
-      "category": "ارگونومی",
+      "category": "Ergonomics",
       "stock": 12,
       "rating": 4.8,
       "image": "/images/Twelve-South.webp",
-      "description": "استند آلومینیومی مقاوم با طراحی باز برای گردش هوای بهتر و تنظیم ارتفاع نمایشگر لپ‌تاپ در تراز چشم."
+      "description": "Durable aluminum stand with an open design for improved airflow and laptop screen height adjustment to eye level."
     },
     {
       "id": "7",
-      "title": "مانیتور ۳۲ اینچ 4K ال‌جی مدل UltraFine Ergo",
+      "title": "LG 32-inch 4K UltraFine Ergo Monitor",
       "price": 34800000,
-      "category": "نمایشگر",
+      "category": "Displays",
       "stock": 3,
       "rating": 4.9,
       "image": "/images/UltraSharp.webp",
-      "description": "مجهز به بازوی ارگونومیک گیره‌ای با قابلیت چرخش ۳۶۰ درجه، پنل Nano IPS با دقت رنگ فوق‌العاده و پورت USB-C همه‌کاره."
+      "description": "Features a 360-degree rotating ergonomic clamp arm, a Nano IPS panel with exceptional color accuracy, and a versatile USB-C port."
     },
     {
       "id": "8",
-      "title": "استند رومیزی لپ‌تاپ رین دیزاین مدل mStand",
+      "title": "Rain Design mStand Desktop Laptop Stand",
       "price": 2850000,
-      "category": "ارگونومی",
+      "category": "Ergonomics",
       "stock": 9,
       "rating": 4.7,
       "image": "/images/Twelve-South.webp",
-      "description": "بدنه یکپارچه از آلومینیوم آنودایز شده با قابلیت دفع حرارت لپ‌تاپ و محفظه مخفی مدیریت کابل در بخش پشتی پایه."
+      "description": "Unibody anodized aluminum construction helps dissipate laptop heat, with a hidden cable-management compartment at the back of the stand."
     },
     {
       "id": "9",
-      "title": "هدفون بی‌سیم بوز مدل QuietComfort Ultra",
+      "title": "Bose QuietComfort Ultra Wireless Headphones",
       "price": 21200000,
-      "category": "صوتی",
+      "category": "Audio",
       "stock": 4,
       "rating": 4.8,
       "image": "/images/WH-1000XM4.webp",
-      "description": "هدفون رده‌بالا با فناوری صدای فضایی (Spatial Audio)، بالشتک‌های فوق سبک برای استفاده طولانی‌مدت و ایزولاسیون صوتی بی‌رقیب در محیط‌های شلوغ."
+      "description": "Premium headphones with spatial audio, ultra-light ear cushions for extended wear, and exceptional noise isolation in busy environments."
     },
     {
       "id": "10",
-      "title": "ماوس بی‌سیم حرفه‌ای ریزر مدل Pro Click",
+      "title": "Razer Pro Click Wireless Mouse",
       "price": 4900000,
-      "category": "لوازم جانبی",
+      "category": "Accessories",
       "stock": 7,
       "rating": 4.6,
       "image": "/images/MX-Master.webp",
-      "description": "طراحی شده با همکاری متخصصان ارگونومی Humanscale، دارای سنسور اپتیکال ۱۶۰۰۰ DPI و عمر باتری تا ۴۰۰ ساعت کار مداوم."
+      "description": "Designed in collaboration with Humanscale ergonomics experts, featuring a 16,000 DPI optical sensor and up to 400 hours of battery life."
     },
     {
       "id": "11",
-      "title": "کیبورد مکانیکال لاجیتک مدل MX Mechanical Mini",
+      "title": "Logitech MX Mechanical Mini Keyboard",
       "price": 7450000,
-      "category": "لوازم جانبی",
+      "category": "Accessories",
       "stock": 10,
       "rating": 4.7,
       "image": "/images/K2-Pro.webp",
-      "description": "کیبورد مکانیکال کم‌ارتفاع (Low-Profile) با سوییچ‌های Tactile بی‌صدا، نورپردازی هوشمند بک‌لایت و قابلیت اتصال همزمان به ۳ دستگاه."
+      "description": "Low-profile mechanical keyboard with quiet tactile switches, smart backlighting, and the ability to connect to 3 devices simultaneously."
     },
     {
       "id": "12",
-      "title": "میکروفون استریمینگ رود مدل NT-USB Plus",
+      "title": "Rode NT-USB Plus Streaming Microphone",
       "price": 11300000,
-      "category": "صوتی",
+      "category": "Audio",
       "stock": 5,
       "rating": 4.9,
       "image": "/images/Yeti-X.webp",
-      "description": "میکروفون استودیویی با پری‌امپلیفایر کم‌نویز Revolution و پردازنده صوتی داخلی APHEX برای ضبط صدای شفاف بدون نیاز به کارت صدا."
+      "description": "Studio microphone with a low-noise Revolution preamp and built-in APHEX audio processing for clear recordings without an audio interface."
     },
     {
       "id": "13",
-      "title": "میکروفون پادکست و وکال شور مدل Shure MV7",
+      "title": "Shure MV7 Podcast and Vocal Microphone",
       "price": 14600000,
-      "category": "صوتی",
+      "category": "Audio",
       "stock": 4,
       "rating": 4.8,
       "image": "/images/Yeti-X.webp",
-      "description": "میکروفون داینامیک با خروجی دوگانه USB و XLR، مجهز به فناوری ایزولاسیون صدا برای حذف کامل صدای کیبورد و نویز محیط."
+      "description": "Dynamic microphone with dual USB and XLR outputs, featuring voice isolation technology to eliminate keyboard and ambient noise."
     },
     {
       "id": "14",
-      "title": "ماوس عمودی ارگونومیک لاجیتک مدل Lift",
+      "title": "Logitech Lift Ergonomic Vertical Mouse",
       "price": 4100000,
-      "category": "ارگونومی",
+      "category": "Ergonomics",
       "stock": 11,
       "rating": 4.8,
       "image": "/images/MX-Master.webp",
-      "description": "طراحی عمودی با زاویه استاندارد ۵۷ درجه برای قرارگیری طبیعی دست و کاهش کامل فشار روی عصب مچ در کدنویسی‌های طولانی."
+      "description": "A 57-degree vertical design promotes a natural hand position and reduces wrist pressure during long coding sessions."
     },
     {
       "id": "15",
-      "title": "پایه نگهدارنده تاشو لپ‌تاپ مدل AluStand Pro",
+      "title": "AluStand Pro Foldable Laptop Stand",
       "price": 2150000,
-      "category": "ارگونومی",
+      "category": "Ergonomics",
       "stock": 15,
       "rating": 4.5,
       "image": "/images/Twelve-South.webp",
-      "description": "قابلیت تنظیم ارتفاع در ۷ سطح مختلف، پدهای سیلیکونی ضد لغزش و طراحی تاشو مناسب برنامه‌نویسانی که در کافه یا سفر کار می‌کنند."
+      "description": "Adjustable to 7 height levels, with non-slip silicone pads and a foldable design for developers working in cafés or while traveling."
     },
     {
       "id": "16",
-      "title": "کیبورد مکانیکال نفی مدل NuPhy Air75 V2",
+      "title": "NuPhy Air75 V2 Mechanical Keyboard",
       "price": 6800000,
-      "category": "لوازم جانبی",
+      "category": "Accessories",
       "stock": 6,
       "rating": 4.9,
       "image": "/images/K2-Pro.webp",
-      "description": "کیبورد فوق باریک با فریم آلومینیومی، نرخ نمونه‌برداری ۱۰۰۰ هرتز، پشتیبانی از فریم‌ور متن‌باز QMK/VIA و کلیدهای PBT مقاوم."
+      "description": "Ultra-slim keyboard with an aluminum frame, 1,000 Hz polling rate, open-source QMK/VIA firmware support, and durable PBT keycaps."
     },
     {
       "id": "17",
-      "title": "هدفون استودیویی سنهایزر مدل Momentum 4",
+      "title": "Sennheiser Momentum 4 Studio Headphones",
       "price": 16900000,
-      "category": "صوتی",
+      "category": "Audio",
       "stock": 0,
       "rating": 4.7,
       "image": "/images/WH-1000XM4.webp",
-      "description": "رکورددار شارژدهی باتری تا ۶۰ ساعت همراه با درایورهای ۴۲ میلی‌متری آلمانی و اکولایزر شخصی‌سازی‌شده از طریق اپلیکیشن."
+      "description": "Up to 60 hours of battery life, German-engineered 42 mm drivers, and a customizable equalizer in the companion app."
     },
     {
       "id": "18",
-      "title": "مانیتور ۲۷ اینچ 5K ایسوس مدل ProArt Display",
+      "title": "ASUS ProArt Display 27-inch 5K Monitor",
       "price": 42500000,
-      "category": "نمایشگر",
+      "category": "Displays",
       "stock": 1,
       "rating": 4.9,
       "image": "/images/UltraSharp.webp",
-      "description": "کالیبره شده در کارخانه با تاییدیه Calman Verified، تراکم پیکسلی ۲۱۸ پیکسل بر اینچ برای نمایش فوق‌العاده شارپ متون و کدها."
+      "description": "Factory-calibrated and Calman Verified, with a pixel density of 218 pixels per inch for exceptionally sharp text and code."
     }
   ]
 }

@@ -17,7 +17,7 @@ export default function Navbar() {
             className="navbar-brand d-flex align-items-center gap-2 fw-bold text-dark m-0"
           >
             <i className="bi bi-code-slash text-primary fs-3"></i>
-            <span>دیجی‌استور</span>
+            <span>DigiStore</span>
           </Link>
 
           <button
@@ -27,13 +27,13 @@ export default function Navbar() {
             data-bs-target="#mainNavbar"
             aria-controls="mainNavbar"
             aria-expanded="false"
-            aria-label="تغییر وضعیت منو"
+            aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon"></span>
           </button>
 
           <div className="collapse navbar-collapse" id="mainNavbar">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0 pr-lg-3">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0 ps-lg-3">
               <li className="nav-item">
                 <Link
                   href="/"
@@ -41,7 +41,7 @@ export default function Navbar() {
                     pathname === "/" ? "active fw-bold text-primary" : "text-secondary"
                   }`}
                 >
-                  محصولات
+                  Products
                 </Link>
               </li>
             </ul>
@@ -54,9 +54,9 @@ export default function Navbar() {
                 } d-flex align-items-center gap-2 rounded-3 px-3 py-2`}
               >
                 <i className="bi bi-bag fs-5"></i>
-                <span>سبد خرید</span>
+                <span>Cart</span>
                 <span className="badge rounded-pill bg-danger">
-                  {totalItems.toLocaleString("fa-IR")}
+                  {totalItems.toLocaleString("en-US")}
                 </span>
               </Link>
             </div>

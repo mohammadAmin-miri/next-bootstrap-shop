@@ -1,21 +1,14 @@
 import type { Metadata } from "next";
-import { Vazirmatn } from "next/font/google";
-import "bootstrap/dist/css/bootstrap.rtl.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./globals.css";
 import BootstrapClient from "@/components/ui/BootstrapClient";
 import Navbar from "@/components/ui/Navbar";
 import { CartProvider } from "@/context/CartContext";
 
-const vazirmatn = Vazirmatn({
-  subsets: ["arabic"],
-  display: "swap",
-  variable: "--font-vazirmatn",
-});
-
 export const metadata: Metadata = {
-  title: "دیجی‌استور | فروشگاه تخصصی تجهیزات برنامه‌نویسی",
-  description: "نمونه کار فروشگاه اینترنتی توسعه‌یافته با Next.js، TypeScript و Bootstrap 5",
+  title: "DigiStore | Developer Equipment Store",
+  description: "An online store built with Next.js, TypeScript, and Bootstrap 5",
 };
 
 export default function RootLayout({
@@ -24,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl" className={vazirmatn.variable}>
+    <html lang="en" dir="ltr">
       <body className="bg-light d-flex flex-column min-vh-100">
         <CartProvider>
           <Navbar />
