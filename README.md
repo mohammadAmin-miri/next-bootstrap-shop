@@ -1,3 +1,4 @@
+🌐 **Languages:** **English (Current)** | [🇮🇷 نسخه فارسی (Persian RTL Branch)](https://github.com/mohammadAmin-miri/next-bootstrap-shop/tree/fa)
 # 🛒 DigiStore | Developer Gear E-Commerce Storefront
 
 > A modern, high-performance e-commerce portfolio project built with **Next.js (App Router)**, **TypeScript**, and **Bootstrap 5**.
