@@ -41,3 +41,25 @@
    ```bash
    git clone [https://github.com/mohammadAmin-miri/next-bootstrap-shop.git](https://github.com/mohammadAmin-miri/next-bootstrap-shop.git)
    cd next-bootstrap-shop
+
+   ## 📦 دستورات اجرایی NPM (NPM Scripts)
+
+در این پروژه اسکریپت‌های زیر برای مدیریت توسعه، بیلد و اجرای همزمان سرویس‌ها در نظر گرفته شده است که می‌توانید از آن‌ها استفاده کنید:
+
+* **`npm run dev`**[cite: 1]
+  اجرای سرور توسعه فرانت‌اند (Next.js) به تنهایی روی پورت `3000`.
+
+* **`npm run dev:all`**[cite: 1]
+  اجرای همزمان و یکپارچه هر دو سرور (فرانت‌اند Next.js و دیتابیس JSON Server روی پورت `3001`) با استفاده از پکیج `concurrently`. (بهترین دستور برای شروع توسعه محلی)[cite: 1]
+
+* **`npm run server`**[cite: 1]
+  اجرای مستقل دیتابیس لوکال (JSON Server) بر روی فایل `db.json` در پورت `3001`.
+
+* **`npm run build`**[cite: 1]
+  ساخت و بهینه‌سازی پروژه برای محیط پروداکشن (Production Build) با موتور Turbopack.
+
+* **`npm run start`**[cite: 1]
+  اجرای نسخه بیلد شده و پروداکشن پروژه بر روی سرور.
+
+* **`npm run lint`**[cite: 1]
+  بررسی کدهای پروژه از نظر استانداردهای نگارشی و خطاهای TypeScript/ESLint.
